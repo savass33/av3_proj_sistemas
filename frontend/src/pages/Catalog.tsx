@@ -30,7 +30,9 @@ export const Catalog = () => {
   };
 
   useEffect(() => {
-    loadBooks();
+    (async () => {
+      await loadBooks();
+    })();
   }, []);
 
   const handleCreateBook = async (e: React.FormEvent) => {

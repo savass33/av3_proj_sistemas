@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { api } from "../services/api";
 import { type Notification } from "../types";
@@ -27,7 +27,9 @@ export const NotificationsPage = () => {
   };
 
   useEffect(() => {
-    loadNotifications();
+    (async () => {
+      await loadNotifications();
+    })();
   }, [currentUser]);
 
   if (!currentUser)
