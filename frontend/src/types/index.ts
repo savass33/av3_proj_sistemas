@@ -1,5 +1,3 @@
-// src/types.ts
-
 export interface User {
   id: number;
   nome: string;
@@ -20,7 +18,7 @@ export interface Notification {
   titulo: string;
   mensagem: string;
   tipo: string;
-  dataCriacao: string; // Vem como string ISO do backend Java
+  dataCriacao: string;
   status?: string;
 }
 
@@ -28,5 +26,5 @@ export interface PurchasePayload {
   usuarioId: number;
   livroId: number;
   valor: number;
-  meioPagamento: string;
+  meioPagamento: "PIX" | "BOLETO" | "CARTAO_CREDITO" | "CARTAO_DEBITO";
 }
