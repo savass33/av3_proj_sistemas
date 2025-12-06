@@ -1,0 +1,86 @@
+services:
+  # 1. Frontend (React)
+  - type: web
+    name: livraria-frontend
+    env: docker
+    dockerContext: ./frontend
+    dockerfilePath: ./frontend/Dockerfile
+    plan: free
+    envVars:
+      # O Render não gera URL pública no build.
+      # Você atualizará estes valores no Dashboard DEPOIS do deploy.
+      - key: VITE_API_USERS
+        value: "https://ms-usuarios-8nb7.onrender.com"
+      - key: VITE_API_CATALOG
+        value: "https://ms-catalogo-s348.onrender.com"
+      - key: VITE_API_PAYMENT
+        value: "https://ms-pagamento.onrender.com"
+      - key: VITE_API_NOTIFICATION
+        value: "https://ms-notificacao.onrender.com"
+
+  # 2. Usuários (Porta 8081)
+  - type: web
+    name: ms-usuarios
+    env: docker
+    # REMOVI O "/usuarios" DO FINAL DAS DUAS LINHAS ABAIXO:
+    dockerContext: ./microservicos/usuarios
+    dockerfilePath: ./microservicos/usuarios/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: "8081"
+      # Não esqueça de vincular o Environment Group do Banco de Dados no painel
+      # Configure o Banco de Dados via "Environment Groups" no painel
+
+  # 3. Catálogo (Porta 8084)
+  - type: web
+    name: ms-catalogo
+    env: docker
+    dockerContext: ./microservicos/livros
+    dockerfilePath: ./microservicos/livros/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: "8084"
+      - key: USUARIOS_HOST
+        fromService:
+          type: web
+          name: ms-usuarios
+          property: host # <--- CORRIGIDO: Usa o nome interno
+      - key: PAGAMENTO_HOST
+        fromService:
+          type: web
+          name: ms-pagamento
+          property: host # <--- CORRIGIDO
+
+  # 4. Pagamento (Porta 8082)
+  - type: web
+    name: ms-pagamento
+    env: docker
+    dockerContext: ./microservicos/pagamento
+    dockerfilePath: ./microservicos/pagamento/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: "8082"
+      - key: NOTIFICACAO_HOST
+        fromService:
+          type: web
+          name: ms-notificacao
+          property: host # <--- CORRIGIDO
+
+  # 5. Notificação (Porta 8083)
+  - type: web
+    name: ms-notificacao
+    env: docker
+    dockerContext: ./microservicos/notificacao
+    dockerfilePath: ./microservicos/notificacao/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: "8083"
+      - key: USUARIOS_HOST
+        fromService:
+          type: web
+          name: ms-usuarios
+          property: host # <--- CORRIGIDO
