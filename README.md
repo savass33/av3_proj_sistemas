@@ -333,5 +333,6 @@ Este é um projeto acadêmico desenvolvido para demonstrar conceitos de arquitet
 ## 📄 Licença
 
 Projeto acadêmico - Unifor 2025
-#   a v 3 _ p r o j _ s i s t e m a s  
+#   a v 3 _ p r o j _ s i s t e m a s 
+ 
  
