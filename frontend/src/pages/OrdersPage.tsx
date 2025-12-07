@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { type Order } from '../types';
-import { Package, Clock } from 'lucide-react';
+import { Package} from 'lucide-react';
 
 export const OrdersPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);

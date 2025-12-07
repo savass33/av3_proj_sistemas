@@ -4,6 +4,7 @@ import {
   type Book,
   type Notification,
   type PurchasePayload,
+  type Order
 } from "../types";
 
 const URLS = {
