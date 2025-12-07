@@ -213,7 +213,7 @@ export const Catalog = () => {
                 onChange={(e) => setPaymentMethod(e.target.value as any)}
               >
                 <option value="PIX">PIX (Instantâneo)</option>
-                <option value="CARTAO_CREDITO">Cartão de Crédito</option>
+                <option value="CARTAO">Cartão de Crédito/Débito</option>{" "}
                 <option value="BOLETO">Boleto Bancário</option>
               </select>
             </div>

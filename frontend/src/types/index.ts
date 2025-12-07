@@ -26,5 +26,5 @@ export interface PurchasePayload {
   usuarioId: number;
   livroId: number;
   valor: number;
-  meioPagamento: "PIX" | "BOLETO" | "CARTAO_CREDITO" | "CARTAO_DEBITO";
+  meioPagamento: "PIX" | "BOLETO" | "CARTAO"
 }
