@@ -7,7 +7,16 @@ import {
   type Order,
 } from "../types";
 
-const URLS = {
+// Detecta se está em desenvolvimento local ou produção
+const isDevelopment = import.meta.env.DEV || window.location.hostname === 'localhost';
+
+const URLS = isDevelopment ? {
+  USERS: "http://localhost:8081",
+  CATALOG: "http://localhost:8084",
+  PAYMENT: "http://localhost:8082",
+  NOTIFICATION: "http://localhost:8083",
+  ORDER: "http://localhost:8085",
+} : {
   USERS: "https://ms-usuarios-kcc5.onrender.com",
   CATALOG: "https://ms-catalogo-kcc5.onrender.com",
   PAYMENT: "https://ms-pagamento-kcc5.onrender.com",
