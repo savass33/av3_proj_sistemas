@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpen, Users, Bell } from "lucide-react";
+import { BookOpen, Users, Bell, Package } from "lucide-react";
 import { useUser } from "../context/UserContext";
 import { Link, useLocation } from "react-router-dom";
 
@@ -44,20 +44,20 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <Users size={20} /> Usuários
           </Link>
           <Link
+            to="/orders"
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${isActive(
+              "/orders"
+            )}`}
+          >
+            <Package size={20} /> Pedidos
+          </Link>
+          <Link
             to="/notifications"
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${isActive(
               "/notifications"
             )}`}
           >
             <Bell size={20} /> Notificações
-          </Link>
-          <Link
-            to="/order"
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${isActive(
-              "/order"
-            )}`}
-          >
-            <Bell size={20} /> Pedidos
           </Link>
         </nav>
 

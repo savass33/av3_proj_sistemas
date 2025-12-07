@@ -4,7 +4,7 @@ import {
   type Book,
   type Notification,
   type PurchasePayload,
-  type Order
+  type Order,
 } from "../types";
 
 const URLS = {
@@ -48,4 +48,12 @@ export const api = {
     livroId: number
   ): Promise<AxiosResponse<Order>> =>
     axios.post(`${URLS.ORDER}/pedidos/${usuarioId}/${livroId}`, {}),
+
+  updateOrderStatus: (
+    id: number,
+    status: string
+  ): Promise<AxiosResponse<Order>> =>
+    axios.put(`${URLS.ORDER}/pedidos/${id}/status`, null, {
+      params: { status },
+    }),
 };

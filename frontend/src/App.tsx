@@ -15,7 +15,7 @@ function App() {
             <Route path="/" element={<Catalog />} />
             <Route path="/users" element={<UsersPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/order" element={<OrdersPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Layout>
