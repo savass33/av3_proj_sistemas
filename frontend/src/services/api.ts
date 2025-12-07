@@ -11,7 +11,7 @@ const URLS = {
   CATALOG: "https://ms-catalogo-kcc5.onrender.com",
   PAYMENT: "https://ms-pagamento-kcc5.onrender.com",
   NOTIFICATION: "https://ms-notificacao-kcc5.onrender.com",
-  ORDER: "https://ms-pedidos-SEU-ID.onrender.com",
+  ORDER: "https://ms-pedidos-kcc5.onrender.com",
 };
 
 export const api = {
