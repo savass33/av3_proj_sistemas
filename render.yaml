@@ -22,15 +22,16 @@ services:
   - type: web
     name: ms-usuarios
     env: docker
-    # REMOVI O "/usuarios" DO FINAL DAS DUAS LINHAS ABAIXO:
     dockerContext: ./microservicos/usuarios
     dockerfilePath: ./microservicos/usuarios/Dockerfile
     plan: free
     envVars:
-      - key: SERVER_PORT
-        value: "8081"
-      # Não esqueça de vincular o Environment Group do Banco de Dados no painel
-      # Configure o Banco de Dados via "Environment Groups" no painel
+      - key: DB_HOST
+        value: your-db-host.com  # Configure com seu banco MySQL/PostgreSQL
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-password
 
   # 3. Catálogo (Porta 8084)
   - type: web
@@ -40,18 +41,22 @@ services:
     dockerfilePath: ./microservicos/livros/Dockerfile
     plan: free
     envVars:
-      - key: SERVER_PORT
-        value: "8084"
+      - key: DB_HOST
+        value: your-db-host.com
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-password
       - key: USUARIOS_HOST
         fromService:
           type: web
           name: ms-usuarios
-          property: host # <--- CORRIGIDO: Usa o nome interno
+          property: host
       - key: PAGAMENTO_HOST
         fromService:
           type: web
           name: ms-pagamento
-          property: host # <--- CORRIGIDO
+          property: host
 
   # 4. Pagamento (Porta 8082)
   - type: web
@@ -61,13 +66,17 @@ services:
     dockerfilePath: ./microservicos/pagamento/Dockerfile
     plan: free
     envVars:
-      - key: SERVER_PORT
-        value: "8082"
+      - key: DB_HOST
+        value: your-db-host.com
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-password
       - key: NOTIFICACAO_HOST
         fromService:
           type: web
           name: ms-notificacao
-          property: host # <--- CORRIGIDO
+          property: host
 
   # 5. Notificação (Porta 8083)
   - type: web
@@ -77,15 +86,19 @@ services:
     dockerfilePath: ./microservicos/notificacao/Dockerfile
     plan: free
     envVars:
-      - key: SERVER_PORT
-        value: "8083"
+      - key: DB_HOST
+        value: your-db-host.com
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-password
       - key: USUARIOS_HOST
         fromService:
           type: web
           name: ms-usuarios
-          property: host # <--- CORRIGIDO
+          property: host
 
-# 6. Pedidos (Porta 8085)
+  # 6. Pedidos (Porta 8085)
   - type: web
     name: ms-pedidos
     env: docker
@@ -93,8 +106,12 @@ services:
     dockerfilePath: ./microservicos/pedidos/Dockerfile
     plan: free
     envVars:
-      - key: SERVER_PORT
-        value: "8085"
+      - key: DB_HOST
+        value: your-db-host.com
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-password
       - key: USUARIOS_HOST
         fromService:
           type: web
@@ -105,4 +122,3 @@ services:
           type: web
           name: ms-catalogo
           property: host
-      # O banco de dados virá do Environment Group global
