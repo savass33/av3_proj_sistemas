@@ -51,6 +51,14 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           >
             <Bell size={20} /> Notificações
           </Link>
+          <Link
+            to="/order"
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${isActive(
+              "/order"
+            )}`}
+          >
+            <Bell size={20} /> Pedidos
+          </Link>
         </nav>
 
         <div className="p-6 bg-slate-800 m-4 rounded-xl border border-slate-700">

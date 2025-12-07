@@ -84,3 +84,25 @@ services:
           type: web
           name: ms-usuarios
           property: host # <--- CORRIGIDO
+
+# 6. Pedidos (Porta 8085)
+  - type: web
+    name: ms-pedidos
+    env: docker
+    dockerContext: ./microservicos/pedidos
+    dockerfilePath: ./microservicos/pedidos/Dockerfile
+    plan: free
+    envVars:
+      - key: SERVER_PORT
+        value: "8085"
+      - key: USUARIOS_HOST
+        fromService:
+          type: web
+          name: ms-usuarios
+          property: host
+      - key: CATALOGO_HOST
+        fromService:
+          type: web
+          name: ms-catalogo
+          property: host
+      # O banco de dados virá do Environment Group global

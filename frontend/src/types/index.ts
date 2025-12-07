@@ -13,6 +13,15 @@ export interface Book {
   preco: number;
 }
 
+export interface Order {
+  id: number;
+  usuarioId: number;
+  livroId: number;
+  preco: number;
+  status: string;
+  dataCriacao: string;
+}
+
 export interface Notification {
   id: number;
   titulo: string;
@@ -26,5 +35,5 @@ export interface PurchasePayload {
   usuarioId: number;
   livroId: number;
   valor: number;
-  meioPagamento: "PIX" | "BOLETO" | "CARTAO"
+  meioPagamento: "PIX" | "BOLETO" | "CARTAO";
 }

@@ -11,6 +11,7 @@ const URLS = {
   CATALOG: "https://ms-catalogo-kcc5.onrender.com",
   PAYMENT: "https://ms-pagamento-kcc5.onrender.com",
   NOTIFICATION: "https://ms-notificacao-kcc5.onrender.com",
+  ORDER: "https://ms-pedidos-SEU-ID.onrender.com",
 };
 
 export const api = {
@@ -36,4 +37,14 @@ export const api = {
     userId: number
   ): Promise<AxiosResponse<Notification[]>> =>
     axios.get(`${URLS.NOTIFICATION}/notificacoes/usuario/${userId}`),
+
+  // Pedidos
+  getOrders: (): Promise<AxiosResponse<Order[]>> =>
+    axios.get(`${URLS.ORDER}/pedidos`),
+
+  createOrder: (
+    usuarioId: number,
+    livroId: number
+  ): Promise<AxiosResponse<Order>> =>
+    axios.post(`${URLS.ORDER}/pedidos/${usuarioId}/${livroId}`, {}),
 };
