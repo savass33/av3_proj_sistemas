@@ -87,6 +87,24 @@ services:
     networks:
       - microservices-network
 
+  # Serviço de Pedidos
+  pedidos:
+    build: ./microservicos/pedidos
+    container_name: pedidos-service
+    ports:
+      - "8085:8085"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      USUARIOS_HOST: usuarios
+      CATALOGO_HOST: catalogo
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - microservices-network
+
 networks:
   microservices-network:
     driver: bridge
