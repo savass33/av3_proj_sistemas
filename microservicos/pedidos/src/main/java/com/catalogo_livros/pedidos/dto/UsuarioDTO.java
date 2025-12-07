@@ -1,6 +1,6 @@
-package com.catalogo_livros.pedidos.dto
+package com.catalogo_livros.pedidos.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UsuarioDTO {

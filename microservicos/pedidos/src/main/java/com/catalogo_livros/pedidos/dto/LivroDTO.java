@@ -1,5 +1,8 @@
 package com.catalogo_livros.pedidos.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LivroDTO {
     public Long id;
     public String titulo;
