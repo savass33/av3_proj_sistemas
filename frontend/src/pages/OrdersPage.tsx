@@ -53,8 +53,10 @@ export const OrdersPage = () => {
       setSelectedUser("");
       setSelectedBook("");
       loadData();
-    } catch (error) {
-      alert("Erro ao criar pedido. Verifique se o usuário e o livro existem.");
+    } catch (error: any) {
+      const mensagemErro = error.response?.data?.mensagem || error.message;
+      alert(`Erro na formação do pedido: ${mensagemErro}`);
+      console.error("Erro detalhado:", error);
     }
   };
 
