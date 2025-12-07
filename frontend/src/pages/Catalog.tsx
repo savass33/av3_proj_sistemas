@@ -59,10 +59,10 @@ export const Catalog = () => {
         `Compra de "${purchasingBook.titulo}" realizada via ${paymentMethod}! Verifique as notificações.`
       );
       setPurchasingBook(null);
-    } catch (error) {
-      alert(
-        "Erro na compra. Verifique se os serviços de Pagamento e Catálogo estão rodando."
-      );
+    } catch (error: any) {
+      console.error("Erro detalhado:", error);
+      const mensagemErro = error.response?.data?.mensagem || error.message;
+      alert(`Erro na compra: ${mensagemErro}`);
     }
   };
 
@@ -213,7 +213,7 @@ export const Catalog = () => {
                 onChange={(e) => setPaymentMethod(e.target.value as any)}
               >
                 <option value="PIX">PIX (Instantâneo)</option>
-                <option value="CARTAO">Cartão de Crédito/Débito</option>{" "}
+                <option value="CARTAO">Cartão</option>{" "}
                 <option value="BOLETO">Boleto Bancário</option>
               </select>
             </div>

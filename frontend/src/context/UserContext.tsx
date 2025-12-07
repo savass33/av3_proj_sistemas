@@ -29,7 +29,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    refreshUsers();
+    (async () => {
+      await refreshUsers();
+    })();
   }, []);
 
   return (
